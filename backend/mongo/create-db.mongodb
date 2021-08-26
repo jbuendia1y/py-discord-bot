@@ -1,0 +1,88 @@
+use("botgame")
+
+db.store.insertOne({
+    "basic": [
+      {
+        "name": "Basic Armor",
+        "boost": {
+          "amount": 0.1,
+          "stat": "armor"
+        },
+        "cost": 100
+      },
+      {
+        "name": "Basic Sword",
+        "boost": {
+          "amount": 0.05,
+          "stat": "attack"
+        },
+        "cost": 75
+      },
+      {
+        "name": "Basic Horse",
+        "boost": {
+          "amount": 0.15,
+          "stat": "hp"
+        },
+        "cost": 1000
+      }
+    ],
+    "intermediate": [
+      {
+        "name": "Intermediate Armor",
+        "boost": {
+          "amount": 0.2,
+          "stat": "armor"
+        },
+        "cost": 250
+      },
+      {
+        "name": "Intermediate Sword",
+        "boost": {
+          "amount": 0.08,
+          "stat": "attack"
+        },
+        "cost": 225
+      },
+      {
+        "name": "Intermediate Horse",
+        "boost": {
+          "amount": 0.25,
+          "stat": "hp"
+        },
+        "cost": 10000
+      }
+    ],
+    "advanced": [
+      {
+        "name": "Advanced Armor",
+        "boost": {
+          "amount": 0.5,
+          "stat": "armor"
+        },
+        "cost": 500
+      },
+      {
+        "name": "Advanced Sword",
+        "boost": {
+          "amount": 0.15,
+          "stat": "attack"
+        },
+        "cost": 445
+      },
+      {
+        "name": "Advanced Horse",
+        "boost": {
+          "amount": 0.5,
+          "stat": "hp"
+        },
+        "cost": 100000
+      }
+    ]
+  })
+
+db.enemys.insertMany([
+  {
+    
+  }
+])

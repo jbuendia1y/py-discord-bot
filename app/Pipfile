@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[scripts]
+start = "python3 main.py"
+
+[packages]
+discord = "*"
+requests = "*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+bs4 = "*"
+"discord.py" = {extras = ["voice"], version = "*"}
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"

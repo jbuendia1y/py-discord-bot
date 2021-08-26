@@ -1,0 +1,14 @@
+FROM python:3.8-alpine
+
+WORKDIR /app
+
+COPY ./backend /app
+
+RUN apk update
+RUN apk add vim
+
+RUN pip3 install pipenv
+
+RUN pipenv shell
+RUN pipenv install
+RUN pipenv run start
