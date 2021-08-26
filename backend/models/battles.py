@@ -3,6 +3,11 @@ from models.player import Player
 from pydantic import BaseModel
 
 
+class Winner(BaseModel):
+    id: int
+    name: str = "Winner name"
+
+
 class Pvp(BaseModel):
     player1_id: int
     player2_id: int
