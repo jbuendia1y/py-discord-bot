@@ -1,88 +1,170 @@
 use("botgame")
 
-db.store.insertOne({
-    "basic": [
-      {
-        "name": "Basic Armor",
-        "boost": {
-          "amount": 0.1,
-          "stat": "armor"
-        },
-        "cost": 100
+// Insert docs by type of store
+// Basic Store
+db.store.insert({
+  type : "basic",
+  items : [
+    {
+      "name": "Basic Armor",
+      "boost": {
+        "amount": 0.1,
+        "stat": "armor"
       },
-      {
-        "name": "Basic Sword",
-        "boost": {
-          "amount": 0.05,
-          "stat": "attack"
-        },
-        "cost": 75
+      "cost": 100
+    },
+    {
+      "name": "Basic Sword",
+      "boost": {
+        "amount": 0.05,
+        "stat": "attack"
       },
-      {
-        "name": "Basic Horse",
-        "boost": {
-          "amount": 0.15,
-          "stat": "hp"
-        },
-        "cost": 1000
-      }
-    ],
-    "intermediate": [
-      {
-        "name": "Intermediate Armor",
-        "boost": {
-          "amount": 0.2,
-          "stat": "armor"
-        },
-        "cost": 250
+      "cost": 75
+    },
+    {
+      "name": "Basic Horse",
+      "boost": {
+        "amount": 0.15,
+        "stat": "hp"
       },
-      {
-        "name": "Intermediate Sword",
-        "boost": {
-          "amount": 0.08,
-          "stat": "attack"
-        },
-        "cost": 225
+      "cost": 1000
+    }
+  ]
+})
+// Intermediate Store
+db.store.insert({
+  "type" : "intermediate",
+  "items": [
+    {
+      "name": "Intermediate Armor",
+      "boost": {
+        "amount": 0.2,
+        "stat": "armor"
       },
-      {
-        "name": "Intermediate Horse",
-        "boost": {
-          "amount": 0.25,
-          "stat": "hp"
-        },
-        "cost": 10000
-      }
-    ],
-    "advanced": [
-      {
-        "name": "Advanced Armor",
-        "boost": {
-          "amount": 0.5,
-          "stat": "armor"
-        },
-        "cost": 500
+      "cost": 250
+    },
+    {
+      "name": "Intermediate Sword",
+      "boost": {
+        "amount": 0.08,
+        "stat": "attack"
       },
-      {
-        "name": "Advanced Sword",
-        "boost": {
-          "amount": 0.15,
-          "stat": "attack"
-        },
-        "cost": 445
+      "cost": 225
+    },
+    {
+      "name": "Intermediate Horse",
+      "boost": {
+        "amount": 0.25,
+        "stat": "hp"
       },
-      {
-        "name": "Advanced Horse",
-        "boost": {
-          "amount": 0.5,
-          "stat": "hp"
-        },
-        "cost": 100000
-      }
-    ]
-  })
+      "cost": 10000
+    }
+  ]
+})
+// Advanced Store
+db.store.insert({
+  "type" : "advanced",
+  "items": [
+    {
+      "name": "Advanced Armor",
+      "boost": {
+        "amount": 0.5,
+        "stat": "armor"
+      },
+      "cost": 500
+    },
+    {
+      "name": "Advanced Sword",
+      "boost": {
+        "amount": 0.15,
+        "stat": "attack"
+      },
+      "cost": 445
+    },
+    {
+      "name": "Advanced Horse",
+      "boost": {
+        "amount": 0.5,
+        "stat": "hp"
+      },
+      "cost": 100000
+    }
+  ]
+})
 
-db.enemys.insertMany([
-  {
-    
-  }
-])
+// One Doc by floor for Enemys 
+
+db.enemys.insert({
+  "floor":1,
+  "enemys":[
+    {
+      "name": "Goblin",
+      "stats": {
+        "hp": 60,
+        "armor": 1,
+        "attack": 10,
+        "currently_hp": 60
+      }
+    },
+    {
+      "name": "Slime",
+      "stats": {
+        "hp": 15,
+        "armor": 1,
+        "attack": 5,
+        "currently_hp": 15
+      }
+    },
+    {
+      "name": "Skeleton",
+      "stats": {
+        "hp": 45,
+        "armor": 10,
+        "attack": 15,
+        "currently_hp": 45
+      }
+    },
+    {
+      "name": "Wolf",
+      "stats": {
+        "hp": 70,
+        "armor": 15,
+        "attack": 15,
+        "currently_hp": 70
+      }
+    },
+    {
+      "name": "Wild Pig",
+      "stats": {
+        "hp": 25,
+        "armor": 12,
+        "attack": 15,
+        "currently_hp": 25
+      }
+    },
+  ]
+})
+
+db.enemys.insert({
+  "floor" : 2,
+  "enemys":[
+    {
+      "name": "Orc",
+      "stats": {
+        "hp": 85,
+        "armor": 12,
+        "attack": 13,
+        "currently_hp": 85
+      }
+    },
+    {
+      "name": "Troll",
+      "stats": {
+        "hp": 50,
+        "armor": 15,
+        "attack": 20,
+        "currently_hp": 50
+      }
+    }
+  ]
+})
