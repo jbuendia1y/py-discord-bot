@@ -1,6 +1,7 @@
+from re import M
 from fastapi import APIRouter
-from typing import List, Dict
-from random import choice
+from typing import List
+from helpers import random_enemy
 
 from config.db import conn
 from models.entities import Enemy
@@ -16,6 +17,4 @@ async def enemys_by_floor(floor: int):
 
 @enemysRouter.get("/{floor}/random", response_model=Enemy)
 async def enemys_by_floor(floor: int):
-    data = conn.enemys.find_one({"floor": floor}, {"_id": 0})
-    enemys: list = data["enemys"]
-    return choice(enemys)
+    return random_enemy(floor)

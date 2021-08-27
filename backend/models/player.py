@@ -7,7 +7,7 @@ from .items import Consumable, Item
 
 class Progress_stats(BaseModel):
     xp: int = 0
-    floor: int
+    floor: int = 1
 
 
 class Progress(BaseModel):

@@ -17,10 +17,10 @@ class Entity(BaseModel):
     stats: Entity_stats
 
     def dispatch_damage(self) -> int:
-        pass
+        return self.stats.current.attack
 
     def catch_damage(self, damage: int):
-        pass
+        self.stats.current.hp -= damage
 
 
 class Enemy(Entity):
