@@ -6,11 +6,14 @@ name = "pypi"
 [scripts]
 start = "uvicorn app:app"
 dev = "uvicorn app:app --reload"
+test = "pytest"
 
 [packages]
 fastapi = "*"
 uvicorn = "*"
 pymongo = "*"
+requests = "*"
+pytest = "*"
 
 [dev-packages]
 autopep8 = "*"

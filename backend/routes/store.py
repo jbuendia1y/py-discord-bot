@@ -17,6 +17,6 @@ async def get_by_lvl(lvl: str) -> List[Store_item]:
     type_lvl = lvl.lower()
     if type_lvl != "basic" and type_lvl != "intermediate" and type_lvl != "advanced":
         return "Wrong parameter"
-    store = conn.store.find_one({}, {"_id": 0})
+    store = conn.store.find_one({"type": type_lvl}, {"_id": 0})
 
-    return store[type_lvl]
+    return store
