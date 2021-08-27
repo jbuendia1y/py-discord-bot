@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 from app import app
 
+from test.helpers import reset_players
+
 client = TestClient(app)
 
 
@@ -37,3 +39,10 @@ def test_store_route_by_type():
     if data[0]["name"].lower().find(store_type) == -1:
         assert False
     assert True
+
+
+def test_hunt_route():
+    reset_players()
+    response = client.post("/battles/hunt?id=1")
+    assert response.status_code == 200
+    assert type(response.json()["id"]) == int
