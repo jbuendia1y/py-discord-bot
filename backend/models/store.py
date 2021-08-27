@@ -14,6 +14,5 @@ class Store_item(BaseModel):
 
 
 class Store(BaseModel):
-    basic: List[Store_item]
-    intermediate: List[Store_item]
-    advanced: List[Store_item]
+    type: str
+    items: List[Store_item]

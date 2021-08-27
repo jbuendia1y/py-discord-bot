@@ -18,10 +18,22 @@ def test_enemys_by_floor_random():
     assert type(request.json()) == dict
 
 
+def test_store_route():
+    response = client.get("/store")
+    assert response.status_code == 200
+
+    data = response.json()
+    assert type(data) == list
+    assert type(data[0]["items"][0]["name"]) == str
+
+
 def test_store_route_by_type():
     store_type = "basic"
     response = client.get("/store/" + store_type)
     assert response.status_code == 200
 
     data = response.json()
-    assert data["type"] == store_type
+    assert type(data) == list
+    if data[0]["name"].lower().find(store_type) == -1:
+        assert False
+    assert True
