@@ -3,8 +3,8 @@ use("botgame")
 // Insert docs by type of store
 // Basic Store
 db.store.insert({
-  type : "basic",
-  items : [
+  "type" : "basic",
+  "items" : [
     {
       "name": "Basic Armor",
       "boost": {
@@ -100,46 +100,76 @@ db.enemys.insert({
     {
       "name": "Goblin",
       "stats": {
-        "hp": 60,
-        "armor": 1,
-        "attack": 10,
-        "currently_hp": 60
+        "current": {
+          "hp": 60,
+          "armor": 1,
+          "attack": 10
+        },
+        "max": {
+          "armor": 1,
+          "attack": 10,
+          "hp": 60
+        }
       }
     },
     {
       "name": "Slime",
       "stats": {
-        "hp": 15,
-        "armor": 1,
-        "attack": 5,
-        "currently_hp": 15
+        "current":{
+          "hp": 15,
+          "armor": 1,
+          "attack": 5,
+        },
+        "max":{
+          "hp": 15,
+          "armor": 1,
+          "attack": 5,
+        }
       }
     },
     {
       "name": "Skeleton",
       "stats": {
-        "hp": 45,
-        "armor": 10,
-        "attack": 15,
-        "currently_hp": 45
+        "current":{
+          "hp": 45,
+          "armor": 10,
+          "attack": 15,
+        },
+        "max":{
+          "hp": 45,
+          "armor": 10,
+          "attack": 15,
+        }
       }
     },
     {
       "name": "Wolf",
       "stats": {
-        "hp": 70,
-        "armor": 15,
-        "attack": 15,
-        "currently_hp": 70
+        "current":{
+          "hp": 70,
+          "armor": 15,
+          "attack": 15,
+        },
+        "max":{
+          "hp": 70,
+          "armor": 15,
+          "attack": 15,
+        }
       }
     },
     {
       "name": "Wild Pig",
       "stats": {
-        "hp": 25,
-        "armor": 12,
-        "attack": 15,
-        "currently_hp": 25
+        "current":{
+          "hp": 25,
+          "armor": 12,
+          "attack": 15,
+        },
+        "max":{
+          "hp": 25,
+          "armor": 12,
+          "attack": 15,
+        }
       }
     },
   ]
@@ -151,19 +181,31 @@ db.enemys.insert({
     {
       "name": "Orc",
       "stats": {
-        "hp": 85,
-        "armor": 12,
-        "attack": 13,
-        "currently_hp": 85
+        "current":{
+          "hp": 85,
+          "armor": 12,
+          "attack": 13,
+        },
+        "max":{
+          "hp": 85,
+          "armor": 12,
+          "attack": 13,
+        }
       }
     },
     {
       "name": "Troll",
       "stats": {
-        "hp": 50,
-        "armor": 15,
-        "attack": 20,
-        "currently_hp": 50
+        "current":{
+          "hp": 50,
+          "armor": 15,
+          "attack": 20,
+        },
+        "max":{
+          "hp": 50,
+          "armor": 15,
+          "attack": 20,
+        }
       }
     }
   ]
