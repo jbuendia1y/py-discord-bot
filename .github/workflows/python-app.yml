@@ -26,7 +26,6 @@ jobs:
       - name: Backend Testing
         run: |
           cd backend
-          pipenv shell
           pipenv install
           pipenv run test
           echo "**......Finish Testing......**"
