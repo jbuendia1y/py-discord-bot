@@ -12,6 +12,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MONGO_HOST: ${secrets.MONGO_HOST}
+      MONGO_PORT: ${secrets.MONGO_PORT}
 
     steps:
       - uses: actions/checkout@v2
