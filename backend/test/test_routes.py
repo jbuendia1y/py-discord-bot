@@ -1,12 +1,13 @@
 from fastapi.testclient import TestClient
 from app import app
 
-from test.helpers import reset_players
+from test.helpers import reset_players, reset_db_for_testing
 
 client = TestClient(app)
 
 
 def test_enemys_by_floor():
+    reset_db_for_testing()
     floor = 1
     request = client.get("/enemys/" + str(floor))
     assert request.status_code == 200
@@ -14,6 +15,7 @@ def test_enemys_by_floor():
 
 
 def test_enemys_by_floor_random():
+    reset_db_for_testing()
     floor = 1
     request = client.get("/enemys/" + str(floor) + "/random")
     assert request.status_code == 200
@@ -21,6 +23,7 @@ def test_enemys_by_floor_random():
 
 
 def test_store_route():
+    reset_db_for_testing()
     response = client.get("/store")
     assert response.status_code == 200
 
@@ -30,6 +33,7 @@ def test_store_route():
 
 
 def test_store_route_by_type():
+    reset_db_for_testing()
     store_type = "basic"
     response = client.get("/store/" + store_type)
     assert response.status_code == 200

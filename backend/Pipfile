@@ -11,7 +11,7 @@ test = "pytest"
 [packages]
 fastapi = "*"
 uvicorn = "*"
-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
 requests = "*"
 pytest = "*"
 
