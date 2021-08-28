@@ -3,7 +3,7 @@ import os
 
 config = {
     "host": os.environ["MONGO_HOST"],
-    "port": int(os.environ["MONGO_PORT"] if os.environ["MONGO_PORT"] else "0")
+    "port": int(os.getenv("MONGO_PORT", default=27017))
 }
 
 client = MongoClient(**config)
