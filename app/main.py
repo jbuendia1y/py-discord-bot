@@ -1,7 +1,6 @@
-from discord import Client
 from os import getenv, mkdir
 
-from Bot import Bot
+from Bot import bot
 from scripts.reset import reset
 
 if __name__ == "__main__":
@@ -11,5 +10,4 @@ if __name__ == "__main__":
         print("File already exist")
     if getenv("PY_ENV") == "production":
         reset()
-    bot = Bot(Client())
-    bot.run_bot()
+    bot.run(getenv("BOT_TOKEN"))
