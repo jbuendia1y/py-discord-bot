@@ -1,12 +1,17 @@
-from discord import Client
-from .events import init_events
-from os import getenv
+from discord.ext import commands
+from os import listdir
+
+cogs = []
+
+for item in listdir("Bot/commands/"):
+    if not item.__contains__("__"):
+        cogs.append(item.replace(".py", ""))
+
+bot = commands.Bot(command_prefix="$")
+for file in cogs:
+    bot.load_extension("Bot.commands." + file)
 
 
-class Bot:
-    def __init__(self, client: Client) -> None:
-        self.client = client
-        init_events(self.client)
-
-    def run_bot(self):
-        self.client.run(getenv("BOT_TOKEN"))
+@bot.add_listener
+async def on_ready():
+    print("BOT READY")

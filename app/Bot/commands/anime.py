@@ -1,48 +1,21 @@
-from discord import Message, Client, Embed
+from discord.ext import commands
+from discord.ext.commands.context import Context
+from discord.message import Message
+
 from urllib import parse
 import requests
-from dataclasses import dataclass
 
-from models import CommandModel
-
-
-@dataclass
-class Anime:
-    title: str
-    synopsis: str
-    favorites: int
-    emission: str
-    end_emission: str
-    image: str
-
-    def __init__(self, data) -> None:
-        self.title = data["canonicalTitle"]
-        self.synopsis = data["synopsis"]
-        self.synopsis = self.synopsis[0:500] + "..."
-
-        self.favorites = data["favoritesCount"]
-        self.emission = data["startDate"]
-        self.end_emission = data["endDate"]
-        self.image = data["posterImage"]["original"]
-
-    def get_embed(self) -> Embed:
-        embed = Embed(title=self.title)
-        embed.set_image(url=self.image)
-        embed.description = self.synopsis
-        embed.add_field(name="Emission and Ending",
-                        value=f"{self.emission} **/** {self.end_emission}")
-        embed.add_field(name="Favorites", value=":star: " +
-                        str(self.favorites))
-        return embed
+from models.anime import AnimeModel
 
 
-class Anime_cmds:
-    base_url: str
-
-    def __init__(self) -> None:
+class Anime(commands.Cog):
+    def __init__(self, bot) -> None:
+        self.bot = bot
         self.base_url = "https://kitsu.io/api/edge/anime?"
 
-    async def get_anime(self, message: Message, _):
+    @commands.command(name="anime")
+    async def get_anime(self, ctx: Context):
+        message: Message = ctx.message
         params: list = message.content.split(" ")
         if len(params) == 1:
             return await message.channel.send("The command need a param")
@@ -53,9 +26,10 @@ class Anime_cmds:
         data = requests.get(url).json()["data"]
         if len(data) == 0:
             return await message.channel.send("Anime not Found :face_with_monocle:")
-        anime = Anime(data[0]["attributes"])
+        anime = AnimeModel(data[0]["attributes"])
 
         await message.channel.send(embed=anime.get_embed())
 
-    async def get_character(self, message: Message, client: Client):
-        pass
+
+def setup(bot: commands.Bot):
+    bot.add_cog(Anime(bot))
