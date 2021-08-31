@@ -31,7 +31,8 @@ player_attributes = {
         "max": {
             "xp": 0,
             "floor": 1
-        }
+        },
+        "lvl": 1
     }
 }
 

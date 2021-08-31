@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from app import app
 
-from test.helpers import reset_players, reset_db_for_testing
+from test.helpers import reset_players, reset_db_for_testing, players_for_test
 
 client = TestClient(app)
 
@@ -47,6 +47,6 @@ def test_store_route_by_type():
 
 def test_hunt_route():
     reset_players()
-    response = client.post("/battles/hunt?id=1")
+    response = client.post("/battles/hunt?id=" + players_for_test[0]["id"])
     assert response.status_code == 200
-    assert type(response.json()["id"]) == int
+    assert type(response.json()["id"]) == str
