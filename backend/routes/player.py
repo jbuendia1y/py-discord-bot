@@ -8,7 +8,7 @@ player = APIRouter(prefix="/player")
 
 
 @player.get("/{id}", response_model=Player)
-async def get_player(id: int):
+async def get_player(id: str):
     return conn.players.find_one({"id": id}, {"_id": 0})
 
 

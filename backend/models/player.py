@@ -13,6 +13,7 @@ class Progress_stats(BaseModel):
 class Progress(BaseModel):
     current: Progress_stats
     max: Progress_stats
+    lvl: int
 
 
 class Inventory(BaseModel):
@@ -25,7 +26,7 @@ class Stats(Entity_stats):
 
 
 class Player(Entity):
-    id: Optional[int]
+    id: Optional[str]
     name: str
     stats: Stats
     inventory: Inventory

@@ -14,6 +14,7 @@ pandas = "*"
 matplotlib = "*"
 bs4 = "*"
 "discord.py" = {extras = ["voice"], version = "*"}
+pydantic = "*"
 
 [dev-packages]
 autopep8 = "*"

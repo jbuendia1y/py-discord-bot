@@ -3,7 +3,7 @@ from helpers import api
 
 
 def fetch_item(name: str, lvl: str) -> dict:
-    store = api.get("/store")
+    store = api.get("/store").json()
     for item in store[lvl]:
         if item["name"].lower() == name.lower():
             return item

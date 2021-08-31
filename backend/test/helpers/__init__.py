@@ -38,12 +38,12 @@ player_attributes = {
 players_for_test = [
     {
         "name": "Joaquín",
-        "id": 1,
+        "id": "123456",
         **player_attributes
     },
     {
         "name": "testing_player",
-        "id": 2,
+        "id": "234567",
         **player_attributes
     }
 ]

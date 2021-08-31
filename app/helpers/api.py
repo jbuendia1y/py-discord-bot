@@ -12,6 +12,7 @@ class Handle_request:
         return self.__baseUrl + url
 
     def get(self, url: str):
+        print(self.__get_url(url))
         response = requests.get(self.__get_url(url))
         return response
 
