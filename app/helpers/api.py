@@ -1,23 +1,24 @@
 import requests
-import os
+from os import getenv
 
 
-class Api:
-    baseUrl: str
+class Handle_request:
+    __baseUrl: str
 
     def __init__(self) -> None:
-        self.baseUrl = os.environ["API_URL"]
+        self.__baseUrl = getenv("API_URL", default="http://localhost:3000")
 
-    def get(self, url: str, json: bool):
-        req = requests.get(self.baseUrl + url)
-        if json:
-            return req.json()
-        else:
-            return req
+    def __get_url(self, url: str):
+        return self.__baseUrl + url
 
-    def post(self, url: str, json: bool):
-        req = requests.post(self.baseUrl + url)
-        if json:
-            return req.json()
-        else:
-            return req
+    def get(self, url: str):
+        print(self.__get_url(url))
+        response = requests.get(self.__get_url(url))
+        return response
+
+    def post(self, url: str, data: dict = None):
+        response = requests.post(self.__get_url(url), json=data)
+        return response
+
+    def put(self, url: str, data: dict = None):
+        return requests.put(self.__get_url(url), json=data)

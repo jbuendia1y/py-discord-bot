@@ -1,3 +1,4 @@
+from helpers import api
 from discord import Message, Embed
 from discord.ext import commands
 from discord.ext.commands import Context
@@ -51,17 +52,14 @@ class Game_cmds(commands.Cog):
 
     @commands.command(name="hunt")
     async def hunt(self, ctx: Context):
-        message: Message = ctx.message
-        player = Player(message.author.id, message.author.name)
+        url = "/player/"+str(ctx.message.author.id)
+        player = Player(**api.get(url).json())
         winner = Hunt(player).start_hunt()
 
-        if not winner:
-            await message.channel.send("EMPATE !!!")
+        if winner.name != player.name:
+            await ctx.message.channel.send("You lose")
         else:
-            if winner.name != player.name:
-                await message.channel.send("You lose")
-            else:
-                await message.channel.send("You get 5px")
+            await ctx.message.channel.send("You get 5px")
 
     @commands.command(name="use")
     async def use(self, ctx: Context):

@@ -31,19 +31,20 @@ player_attributes = {
         "max": {
             "xp": 0,
             "floor": 1
-        }
+        },
+        "lvl": 1
     }
 }
 
 players_for_test = [
     {
         "name": "Joaquín",
-        "id": 1,
+        "id": "123456",
         **player_attributes
     },
     {
         "name": "testing_player",
-        "id": 2,
+        "id": "234567",
         **player_attributes
     }
 ]

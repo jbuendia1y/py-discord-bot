@@ -25,7 +25,7 @@ async def pvp(pvp: Pvp):
 
 
 @battlesRouter.post("/hunt", response_model=Player)
-async def player_hunt(id: int):
+async def player_hunt(id: str):
     player = Player(**conn.players.find_one({"id": id}, {"_id": 0}))
     hunt(player, Enemy(**random_enemy(player.progress.current.floor)))
 

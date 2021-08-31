@@ -4,13 +4,13 @@ from pydantic import BaseModel
 
 
 class Winner(BaseModel):
-    id: int
+    id: str
     name: str = "Winner name"
 
 
 class Pvp(BaseModel):
-    player1_id: int
-    player2_id: int
+    player1_id: str
+    player2_id: str
 
 
 def battle_pvp(player1: Player, player2: Player):

@@ -1,4 +1,4 @@
 from .html_parser import parser
-from .api import Api
+from .api import Handle_request
 
-api = Api()
+api = Handle_request()

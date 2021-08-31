@@ -1,1 +1,1 @@
-from .command import CommandModel
+from .game import *
