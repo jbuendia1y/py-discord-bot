@@ -1,4 +1,5 @@
 import requests
+import re
 from os import getenv
 
 
@@ -9,10 +10,11 @@ class Handle_request:
         self.__baseUrl = getenv("API_URL", default="http://localhost:3000")
 
     def __get_url(self, url: str):
+        if len(re.findall(r"(http(s):\/\/|www)", url)) != 0:
+            return url
         return self.__baseUrl + url
 
     def get(self, url: str):
-        print(self.__get_url(url))
         response = requests.get(self.__get_url(url))
         return response
 

@@ -1,13 +1,6 @@
-from os import getenv, mkdir
+from os import getenv
 
-from Bot import bot
-from scripts.reset import reset
+from src import bot
 
 if __name__ == "__main__":
-    try:
-        mkdir("assets")
-    except FileExistsError:
-        print("File already exist")
-    if getenv("PY_ENV") == "production":
-        reset()
     bot.run(getenv("BOT_TOKEN"))

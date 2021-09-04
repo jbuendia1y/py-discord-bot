@@ -5,6 +5,8 @@ name = "pypi"
 
 [scripts]
 start = "python3 main.py"
+test = "pytest"
+reset_dir = "python3 scripts/reset.py"
 
 [packages]
 discord = "*"
@@ -15,6 +17,7 @@ matplotlib = "*"
 bs4 = "*"
 "discord.py" = {extras = ["voice"], version = "*"}
 pydantic = "*"
+pytest = "*"
 
 [dev-packages]
 autopep8 = "*"

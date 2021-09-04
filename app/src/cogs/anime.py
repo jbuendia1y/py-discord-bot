@@ -2,10 +2,8 @@ from discord import Embed
 from discord.ext import commands
 from discord.message import Message
 
-from urllib import parse
-import requests
-
-from models.anime import AnimeModel
+from src.models.anime import AnimeModel
+from src.modules.anime import get_anime_by_name
 
 
 class Anime(commands.Cog):
@@ -13,7 +11,7 @@ class Anime(commands.Cog):
         self.bot = bot
         self.base_url = "https://kitsu.io/api/edge/anime?"
 
-    def get_anime_embed(self, anime: AnimeModel) -> Embed:
+    def __get_anime_embed(self, anime: AnimeModel) -> Embed:
         embed = Embed(title=anime.title)
         embed.set_image(url=anime.image)
         embed.description = anime.synopsis
@@ -24,20 +22,14 @@ class Anime(commands.Cog):
         return embed
 
     @commands.command(name="anime")
-    async def get_anime(self, ctx: commands.Context):
+    async def get_anime(self, ctx: commands.Context, *anime_name):
         message: Message = ctx.message
-        params: list = message.content.split(" ")
-        if len(params) == 1:
+        if len(anime_name) == 0:
             return await message.channel.send("The command need a param")
-        params.pop(0)
-        query = parse.urlencode({"filter[text]": " ".join(params)})
-        url = self.base_url + query + "&page[limit]=1"
-
-        data = requests.get(url).json()["data"]
+        data = get_anime_by_name(" ".join(anime_name).strip())
         if len(data) == 0:
             return await message.channel.send("Anime not Found :face_with_monocle:")
-        print(message.author.id)
-        await message.channel.send(embed=self.get_anime_embed(AnimeModel(data[0]["attributes"])))
+        await message.channel.send(embed=self.__get_anime_embed(AnimeModel(data[0]["attributes"])))
 
 
 def setup(bot: commands.Bot):
