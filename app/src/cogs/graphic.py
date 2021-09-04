@@ -2,25 +2,26 @@ from discord import Message, Embed, File
 from discord.ext import commands
 from discord.ext.commands import Context
 
+from helpers import api
+
 from os import path
-import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 
 
-class Graphics_cmds(commands.Cog):
+class Graphics(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
-    def saveGraphic(self, *config, url: str):
+    def __saveGraphic(self, *config, url: str):
         plt.plot(config["x"], config["y"])
         plt.xlabel(config["xlabel"])
         plt.ylabel(config["ylabel"])
         plt.savefig(url)
         plt.close()
 
-    def parse_data(self, code: str = "PER"):
-        data = requests.get(
+    def __parse_data(self, code: str = "PER"):
+        data = api.get(
             "https://covid.ourworldindata.org/data/owid-covid-data.json").json()
 
         dataFrame = pd.DataFrame.from_dict(data[code]["data"])
@@ -33,7 +34,7 @@ class Graphics_cmds(commands.Cog):
             "ylabel": "Total Cases"
         }
 
-        self.saveGraphic(config, "assets/images/" + code + ".png")
+        self.__saveGraphic(config, "assets/images/" + code + ".png")
 
     @commands.command(name="graphic")
     async def get_graphic(self, ctx: Context):
@@ -47,13 +48,13 @@ class Graphics_cmds(commands.Cog):
         if len(code) != 3:
             return await message.channel.send("COUNTRY CODE IS INVALID")
 
-        invalid_code = requests.get(
+        invalid_code = api.get(
             "https://restcountries.eu/rest/v2/alpha/" + code).status_code == 404
         if invalid_code:
             return await message.channel.send("COUNTRY CODE IS INVALID")
         workdir = "assets/images/" + code + ".png"
         if not path.exists(workdir):
-            self.parse_data(code)
+            self.__parse_data(code)
 
         image = File(workdir)
         embed = Embed(title=f"Covid19 - {code} | TOTAL CASES")
@@ -64,4 +65,4 @@ class Graphics_cmds(commands.Cog):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(Graphics_cmds(bot))
+    bot.add_cog(Graphics(bot))
